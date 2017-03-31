@@ -8,6 +8,10 @@ html, body {
 	height: 100%;
 }
 
+body {
+	font-family: Helvetica;
+}
+
 section {
 	display: block;
 	position: relative;
@@ -18,17 +22,31 @@ section {
 	min-height: 100%;
 }
 
+.section h2 {
+	display: block;
+	text-align: center;
+}
+
 .section-content {
 	max-width: 940px;
 	width: 90%;
 	margin: 0 auto;
 }
 
+.section-hero h1 {
+	display: block;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+	transform: translateY(-50%);
+}
+
 
 
 @import "simple/simple";
 
-@include generate-grid-classes();
+@include generate-column-classes();
 
 .grid {
 	@include grid();
@@ -42,6 +60,6 @@ section {
 .column span {
 	display: block;
 	box-sizing: border-box;
-	padding: 5px 0;
+	padding: 10px 0;
 	border: 5px solid #fff;
 }

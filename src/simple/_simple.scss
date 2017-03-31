@@ -1,8 +1,43 @@
-//
+// ========================================
 // Defaults
+// ========================================
+
+//
+// Breakpoint Defaults
+//
+
+$-breakpoints: (
+	large: 'min-width: 1200px',
+	medium: 'max-width: 1041px',
+	small: 'max-width: 767px',
+) !default;
+
+//
+// Grid Defaults
 //
 
 $column-amount: 12 !default;
+
+
+// ========================================
+// Mixins
+// ========================================
+
+//
+// Breakpoint Mixin
+//
+
+@mixin breakpoint($breakpoint) {
+	
+	$breakpoint: map-get($-breakpoints, $breakpoint);
+	
+	@media only screen and ($breakpoint) { @content }
+
+}
+
+//
+// Breakpoint Mixin
+//
 
 @mixin column-start($position: auto) {
 	grid-column-start: $position;
@@ -12,27 +47,56 @@ $column-amount: 12 !default;
 	grid-column-end: $length;
 }
 
-@mixin grid($display: grid, $column-template: $column-amount, $row-template: auto) {
+@mixin row-start($position: auto) {
+	grid-row-start: $position;
+}
+
+@mixin row-end($length: auto) {
+	grid-row-end: $length;
+}
+
+@mixin grid($display: grid, $column-template: $column-amount, $row-template: column) {
 	display: $display;
 	grid-template-columns: repeat($column-amount, 1fr);
 	
-	@if $row-template == auto {
-		grid-auto-rows: auto;
+	@if $row-template == column {
+		grid-auto-flow: column;
 	} @else {
 		grid-template-rows: $row-template;
 	}
 }
 
-@mixin generate-grid-classes($columns: $column-amount) {
+@mixin generate-column-classes($columns: $column-amount) {
 
 	@for $i from 1 through $columns {
 
-		.column-position-#{$i} {
-			@include column-start($i);
-		}
+		@each $breakpoint-name, $breakpoint-value in $-breakpoints {
+			
+			@if ($breakpoint-name != "large") {
 
-		.column-span-#{$i} {
-			@include column-end(span $i);
+				@include breakpoint($breakpoint-name){
+					.column-#{$breakpoint-name}-position-#{$i} {
+						@include column-start($i);
+					}
+				}
+
+				@include breakpoint($breakpoint-name){
+					.column-#{$breakpoint-name}-span-#{$i} {
+						@include column-end(span $i);
+					}
+				}
+
+			} @else {
+
+				.column-#{$breakpoint-name}-position-#{$i} {
+					@include column-start($i);
+				}
+
+				.column-#{$breakpoint-name}-span-#{$i} {
+					@include column-end(span $i);
+				}
+			    
+			}
 		}
 
 	}
