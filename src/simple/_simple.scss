@@ -7,9 +7,9 @@
 //
 
 $-breakpoints: (
-	large: 'min-width: 1200px',
-	medium: 'max-width: 1041px',
-	small: 'max-width: 767px',
+	large: '(min-width: 1042px)',
+	medium: '(min-width: 768px) and (max-width: 1041px)',
+	small: '(min-width: 320px) and (max-width: 767px)'
 ) !default;
 
 //
@@ -28,10 +28,10 @@ $column-amount: 12 !default;
 //
 
 @mixin breakpoint($breakpoint) {
-	
+
 	$breakpoint: map-get($-breakpoints, $breakpoint);
-	
-	@media only screen and ($breakpoint) { @content }
+
+	@media #{$breakpoint} { @content }
 
 }
 
@@ -58,7 +58,7 @@ $column-amount: 12 !default;
 @mixin grid($display: grid, $column-template: $column-amount, $row-template: column) {
 	display: $display;
 	grid-template-columns: repeat($column-amount, 1fr);
-	
+
 	@if $row-template == column {
 		grid-auto-flow: column;
 	} @else {
@@ -68,10 +68,10 @@ $column-amount: 12 !default;
 
 @mixin generate-column-classes($columns: $column-amount) {
 
-	@for $i from 1 through $columns {
+	@each $breakpoint-name, $breakpoint-value in $-breakpoints {
 
-		@each $breakpoint-name, $breakpoint-value in $-breakpoints {
-			
+		@for $i from 1 through $columns {
+
 			@if ($breakpoint-name != "large") {
 
 				@include breakpoint($breakpoint-name){
@@ -95,7 +95,7 @@ $column-amount: 12 !default;
 				.column-#{$breakpoint-name}-span-#{$i} {
 					@include column-end(span $i);
 				}
-			    
+
 			}
 		}
 
