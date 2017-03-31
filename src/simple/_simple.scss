@@ -1,0 +1,40 @@
+//
+// Defaults
+//
+
+$column-amount: 12 !default;
+
+@mixin column-start($position: auto) {
+	grid-column-start: $position;
+}
+
+@mixin column-end($length: auto) {
+	grid-column-end: $length;
+}
+
+@mixin grid($display: grid, $column-template: $column-amount, $row-template: auto) {
+	display: $display;
+	grid-template-columns: repeat($column-amount, 1fr);
+	
+	@if $row-template == auto {
+		grid-auto-rows: auto;
+	} @else {
+		grid-template-rows: $row-template;
+	}
+}
+
+@mixin generate-grid-classes($columns: $column-amount) {
+
+	@for $i from 1 through $columns {
+
+		.column-position-#{$i} {
+			@include column-start($i);
+		}
+
+		.column-span-#{$i} {
+			@include column-end(span $i);
+		}
+
+	}
+
+}
