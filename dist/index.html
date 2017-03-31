@@ -4,46 +4,67 @@
 	<meta charset="UTF-8">
 	<title>Simple</title>
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/overview.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 </head>
 <body>
 	<section class="section section-hero">
 		<h1>Simple Grids</h1>
 	</section>
-	<section class="section section-default-grid">
-		<h2>Default Grid Usage</h2>
+	<section class="section section-introduction">
 		<div class="section-content grid">
-			<div class="col col-l-span-1 col-l-pos-1"><span>1</span></div>
-			<div class="col col-l-span-11 col-l-pos-2"><span>11</span></div>
-			<div class="col col-l-span-2 col-l-pos-1"><span>2</span></div>
-			<div class="col col-l-span-10 col-l-pos-3"><span>10</span></div>
-			<div class="col col-l-span-3 col-l-pos-1"><span>3</span></div>
-			<div class="col col-l-span-9 col-l-pos-4"><span>9</span></div>
-			<div class="col col-l-span-4 col-l-pos-1"><span>4</span></div>
-			<div class="col col-l-span-8 col-l-pos-5"><span>8</span></div>
-			<div class="col col-l-span-5 col-l-pos-1"><span>5</span></div>
-			<div class="col col-l-span-7 col-l-pos-6"><span>7</span></div>
-			<div class="col col-l-span-6 col-l-pos-1"><span>6</span></div>
-			<div class="col col-l-span-6 col-l-pos-7"><span>6</span></div>
-			<div class="col col-l-span-12 col-l-pos-1"><span>12</span></div>
+			<div class="col col-l-span-8 col-l-pos-3">
+				<h2>Introduction</h2>
+				<p>Grid Layout gives us a method of creating grid structures that are described in CSS and not in HTML. It helps us to create layouts that can be redefined using Media Queries and adapt to different contexts.</p>
+
+				<p>Grid Layout lets us properly separate the order of elements in the source from their visual presentation. As a designer this means you are free to change the location of page elements as is best for your layout at different breakpoints and not need to compromise a sensible structured document for your responsive design.</p>
+
+				<p>It’s very easy to make grid adapt to the available space. With each element having an area on the grid, things are not in risk of overlapping due to text size change, more content than expected or small viewports.</p>
+
+				<p>Unlike with an HTML table-based layout, you can layer items on the grid. So one item can overlap another if required.</p>
+			</div>
+		</div>
+	</section>
+	<section class="section section-default-grid">
+		<h2>Default Grid Example</h2>
+		<div class="section-content grid grid-layouts">
+			<div class="col col-l-span-1 col-l-pos-1"><span class="grid-layout-background">1</span></div>
+			<div class="col col-l-span-11 col-l-pos-2"><span class="grid-layout-background">11</span></div>
+			<div class="col col-l-span-2 col-l-pos-1"><span class="grid-layout-background">2</span></div>
+			<div class="col col-l-span-10 col-l-pos-3"><span class="grid-layout-background">10</span></div>
+			<div class="col col-l-span-3 col-l-pos-1"><span class="grid-layout-background">3</span></div>
+			<div class="col col-l-span-9 col-l-pos-4"><span class="grid-layout-background">9</span></div>
+			<div class="col col-l-span-4 col-l-pos-1"><span class="grid-layout-background">4</span></div>
+			<div class="col col-l-span-8 col-l-pos-5"><span class="grid-layout-background">8</span></div>
+			<div class="col col-l-span-5 col-l-pos-1"><span class="grid-layout-background">5</span></div>
+			<div class="col col-l-span-7 col-l-pos-6"><span class="grid-layout-background">7</span></div>
+			<div class="col col-l-span-6 col-l-pos-1"><span class="grid-layout-background">6</span></div>
+			<div class="col col-l-span-6 col-l-pos-7"><span class="grid-layout-background">6</span></div>
+			<div class="col col-l-span-12 col-l-pos-1"><span class="grid-layout-background">12</span></div>
 		</div>
 	</section>
 	<section class="section section-responsive-grid">
-		<h2>Responsive Grid Usage</h2>
-		<div class="section-content grid">
-			<div class="col col-l-span-1 col-l-pos-1 col-m-pos-12 col-s-span-12 col-s-pos-1"><span>1</span></div>
-			<div class="col col-l-span-11 col-l-pos-2 col-m-pos-1 col-s-span-6 col-s-pos-1"><span>11</span></div>
-			<div class="col col-l-span-2 col-l-pos-1 col-m-pos-11 col-s-span-6 col-s-pos-7"><span>2</span></div>
-			<div class="col col-l-span-10 col-l-pos-3 col-m-pos-1 col-s-pos-3"><span>10</span></div>
-			<div class="col col-l-span-3 col-l-pos-1 col-m-pos-10 col-s-span-2 col-s-pos-1"><span>3</span></div>
-			<div class="col col-l-span-9 col-l-pos-4 col-m-pos-1 col-s-pos-1"><span>9</span></div>
-			<div class="col col-l-span-4 col-l-pos-1 col-m-pos-9 col-s-span-3 col-s-pos-10"><span>4</span></div>
-			<div class="col col-l-span-8 col-l-pos-5 col-m-pos-1 col-s-span-3 col-s-pos-1"><span>8</span></div>
-			<div class="col col-l-span-5 col-l-pos-1 col-m-pos-8 col-s-span-3 col-s-pos-4"><span>5</span></div>
-			<div class="col col-l-span-7 col-l-pos-6 col-m-pos-1 col-s-span-3 col-s-pos-7"><span>7</span></div>
-			<div class="col col-l-span-6 col-l-pos-1 col-m-pos-7 col-s-span-3 col-s-pos-10"><span>6</span></div>
-			<div class="col col-l-span-6 col-l-pos-7 col-m-pos-1 col-s-span-1 col-s-pos-1"><span>6</span></div>
-			<div class="col col-l-span-12 col-l-pos-1 col-s-span-11 col-s-pos-2"><span>12</span></div>
+		<h2>Responsive Grid Example</h2>
+		<div class="section-content grid grid-layouts">
+			<div class="col col-l-span-1 col-l-pos-1 col-m-pos-12 col-s-span-12 col-s-pos-1"><span class="grid-layout-background">1</span></div>
+			<div class="col col-l-span-11 col-l-pos-2 col-m-pos-1 col-s-span-6 col-s-pos-1"><span class="grid-layout-background">11</span></div>
+			<div class="col col-l-span-2 col-l-pos-1 col-m-pos-11 col-s-span-6 col-s-pos-7"><span class="grid-layout-background">2</span></div>
+			<div class="col col-l-span-10 col-l-pos-3 col-m-pos-1 col-s-pos-3"><span class="grid-layout-background">10</span></div>
+			<div class="col col-l-span-3 col-l-pos-1 col-m-pos-10 col-s-span-2 col-s-pos-1"><span class="grid-layout-background">3</span></div>
+			<div class="col col-l-span-9 col-l-pos-4 col-m-pos-1 col-s-pos-1"><span class="grid-layout-background">9</span></div>
+			<div class="col col-l-span-4 col-l-pos-1 col-m-pos-9 col-s-span-3 col-s-pos-10"><span class="grid-layout-background">4</span></div>
+			<div class="col col-l-span-8 col-l-pos-5 col-m-pos-1 col-s-span-3 col-s-pos-1"><span class="grid-layout-background">8</span></div>
+			<div class="col col-l-span-5 col-l-pos-1 col-m-pos-8 col-s-span-3 col-s-pos-4"><span class="grid-layout-background">5</span></div>
+			<div class="col col-l-span-7 col-l-pos-6 col-m-pos-1 col-s-span-3 col-s-pos-7"><span class="grid-layout-background">7</span></div>
+			<div class="col col-l-span-6 col-l-pos-1 col-m-pos-7 col-s-span-3 col-s-pos-10"><span class="grid-layout-background">6</span></div>
+			<div class="col col-l-span-6 col-l-pos-7 col-m-pos-1 col-s-span-1 col-s-pos-1"><span class="grid-layout-background">6</span></div>
+			<div class="col col-l-span-12 col-l-pos-1 col-s-span-11 col-s-pos-2"><span class="grid-layout-background">12</span></div>
 		</div>
+	</section>
+	<section class="section section-examples">
+		<h2>Grid Examples</h2>
+		<a class="examples-link" href="./examples/default.html">Default</a>
+		<a class="examples-link" href="./examples/responsive.html">Responsive</a>
 	</section>
 </body>
 </html>

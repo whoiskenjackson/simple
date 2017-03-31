@@ -1,27 +1,26 @@
-// --------------------------------------
-// Breakpoints
-// --------------------------------------
+// ========================================
+// Defaults
+// ========================================
 
-// ------------------
-// Breakpoint Map
-// ------------------
+//
+// Breakpoint Defaults
+//
 
 $-breakpoints: (
-	large: 'min-width: 1200px',
-	medium: 'max-width: 1041px',
-	small: 'max-width: 767px',
+	l: '(min-width: 1042px)',
+	m: '(max-width: 1041px)',
+	s: '(max-width: 767px)'
 ) !default;
 
 
-
-// ------------------
+//
 // Breakpoint Mixin
-// ------------------
+//
 
 @mixin breakpoint($breakpoint) {
-	
+
 	$breakpoint: map-get($-breakpoints, $breakpoint);
-	
-	@media ($breakpoint) { @content }
+
+	@media #{$breakpoint} { @content }
 
 }

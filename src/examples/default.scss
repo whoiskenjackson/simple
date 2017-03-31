@@ -1,0 +1,27 @@
+@import "simple/simple";
+
+@include generate-grid-classes();
+
+.grid {
+	@include grid();
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.section-example-1 {
+	.col {
+		padding: 0 40px 40px;
+	}
+
+	.col-banner {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+img {
+	width: 100%;
+	height: auto;
+}

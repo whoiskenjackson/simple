@@ -1,0 +1,7 @@
+@import "simple/simple";
+
+@include generate-grid-classes(responsive);
+
+.grid {
+	@include grid();
+}

@@ -1,0 +1,45 @@
+@import "simple/simple";
+
+@include generate-grid-classes(responsive);
+
+.grid {
+	@include grid();
+}
+
+.col-intro {
+	text-align: center;
+
+	@include breakpoint(s) {
+		text-align: left;
+	}
+}
+
+.section-example-1 {
+	.col {
+		padding: 0 40px 40px;
+
+		@include breakpoint(s) {
+			padding: 0 20px 20px;
+		}
+	}
+
+	.col-banner {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.col-feature {
+		@include breakpoint(m) {
+			text-align: center;
+		}
+
+		@include breakpoint(s) {
+			text-align: left;
+		}
+	}
+}
+
+img {
+	width: 100%;
+	height: auto;
+}

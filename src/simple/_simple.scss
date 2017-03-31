@@ -1,16 +1,8 @@
+@import "core";
+
 // ========================================
 // Defaults
 // ========================================
-
-//
-// Breakpoint Defaults
-//
-
-$-breakpoints: (
-	l: '(min-width: 1042px)',
-	m: '(max-width: 1041px)',
-	s: '(max-width: 767px)'
-) !default;
 
 //
 // Grid Defaults
@@ -26,18 +18,6 @@ $row-amount: $column-amount !default;
 // ========================================
 // Mixins
 // ========================================
-
-//
-// Breakpoint Mixin
-//
-
-@mixin breakpoint($breakpoint) {
-
-	$breakpoint: map-get($-breakpoints, $breakpoint);
-
-	@media #{$breakpoint} { @content }
-
-}
 
 //
 // Column Start Mixin
@@ -90,7 +70,7 @@ $row-amount: $column-amount !default;
 // Generate Column Classes Mixin
 //
 
-@mixin generate-column-row-classes($grid-type: basic, $type: column, $type-amount: $column-amount, $type-prefix: $column-prefix) {
+@mixin generate-column-row-classes($grid-type: default, $type: column, $type-amount: $column-amount, $type-prefix: $column-prefix) {
 
 	@each $breakpoint-name, $breakpoint-value in $-breakpoints {
 
@@ -120,7 +100,7 @@ $row-amount: $column-amount !default;
 
 			}
 
-			@if $breakpoint-name != "large" and $grid-type != basic {
+			@if $breakpoint-name != "large" and $grid-type != default {
 				@include breakpoint($breakpoint-name){
 					.#{$type-prefix}-#{$breakpoint-name}-pos-#{$i} {
 						@if $type == column {
@@ -155,7 +135,8 @@ $row-amount: $column-amount !default;
 // Generate Grid Classes Mixin
 //
 
-@mixin generate-grid-classes($grid-type: basic, $columns: true, $rows: false) {
+@mixin generate-grid-classes($grid-type: default, $type: columns, $columns: true, $rows: false) {
+
 	@if $columns != false {
 		@include generate-column-row-classes($grid-type, column, $column-amount, $column-prefix);
 	}
