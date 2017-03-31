@@ -46,18 +46,18 @@ section {
 
 @import "simple/simple";
 
-@include generate-column-classes();
+@include generate-grid-classes(responsive);
 
 .grid {
 	@include grid();
 }
 
-.column {
+.col {
 	text-align: center;
 	background: #ccc;
 }
 
-.column span {
+.col span {
 	display: block;
 	box-sizing: border-box;
 	padding: 10px 0;

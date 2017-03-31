@@ -7,16 +7,20 @@
 //
 
 $-breakpoints: (
-	large: '(min-width: 1042px)',
-	medium: '(min-width: 768px) and (max-width: 1041px)',
-	small: '(min-width: 320px) and (max-width: 767px)'
+	l: '(min-width: 1042px)',
+	m: '(max-width: 1041px)',
+	s: '(max-width: 767px)'
 ) !default;
 
 //
 // Grid Defaults
 //
 
+$column-prefix: "col" !default;
 $column-amount: 12 !default;
+
+$row-prefix: "row" !default
+$row-amount: $column-amount !default;
 
 
 // ========================================
@@ -36,24 +40,40 @@ $column-amount: 12 !default;
 }
 
 //
-// Breakpoint Mixin
+// Column Start Mixin
 //
 
 @mixin column-start($position: auto) {
 	grid-column-start: $position;
 }
 
+//
+// Column End Mixin
+//
+
 @mixin column-end($length: auto) {
 	grid-column-end: $length;
 }
+
+//
+// Row Start Mixin
+//
 
 @mixin row-start($position: auto) {
 	grid-row-start: $position;
 }
 
+//
+// Row End Mixin
+//
+
 @mixin row-end($length: auto) {
 	grid-row-end: $length;
 }
+
+//
+// Grid Mixin
+//
 
 @mixin grid($display: grid, $column-template: $column-amount, $row-template: column) {
 	display: $display;
@@ -66,39 +86,81 @@ $column-amount: 12 !default;
 	}
 }
 
-@mixin generate-column-classes($columns: $column-amount) {
+//
+// Generate Column Classes Mixin
+//
+
+@mixin generate-column-row-classes($grid-type: basic, $type: column, $type-amount: $column-amount, $type-prefix: $column-prefix) {
 
 	@each $breakpoint-name, $breakpoint-value in $-breakpoints {
 
-		@for $i from 1 through $columns {
+		@for $i from 1 through $type-amount {
 
-			@if ($breakpoint-name != "large") {
+			@if $breakpoint-name == "l" {
 
-				@include breakpoint($breakpoint-name){
-					.column-#{$breakpoint-name}-position-#{$i} {
+				.#{$type-prefix}-#{$breakpoint-name}-pos-#{$i} {
+					@if $type == column {
 						@include column-start($i);
 					}
-				}
 
-				@include breakpoint($breakpoint-name){
-					.column-#{$breakpoint-name}-span-#{$i} {
-						@include column-end(span $i);
+					@if $type == row {
+						@include row-start($i);
 					}
 				}
 
-			} @else {
+				.#{$type-prefix}-#{$breakpoint-name}-span-#{$i} {
+					@if $type == column {
+						@include column-end(span $i);
+					}
 
-				.column-#{$breakpoint-name}-position-#{$i} {
-					@include column-start($i);
+					@if $type == row {
+						@include row-end(span $i);
+					}
 				}
 
-				.column-#{$breakpoint-name}-span-#{$i} {
-					@include column-end(span $i);
+			}
+
+			@if $breakpoint-name != "large" and $grid-type != basic {
+				@include breakpoint($breakpoint-name){
+					.#{$type-prefix}-#{$breakpoint-name}-pos-#{$i} {
+						@if $type == column {
+							@include column-start($i);
+						}
+
+						@if $type == row {
+							@include row-start($i);
+						}
+					}
 				}
 
+				@include breakpoint($breakpoint-name){
+					.#{$type-prefix}-#{$breakpoint-name}-span-#{$i} {
+						@if $type == column {
+							@include column-end(span $i);
+						}
+
+						@if $type == row {
+							@include row-end(span $i);
+						}
+					}
+				}
 			}
 		}
 
 	}
 
+}
+
+//
+// Generate Grid Classes Mixin
+//
+
+@mixin generate-grid-classes($grid-type: basic, $columns: true, $rows: false) {
+	@if $columns != false {
+		@include generate-column-row-classes($grid-type, column, $column-amount, $column-prefix);
+	}
+
+	@if $rows != false {
+		@include generate-column-row-classes($grid-type, row, $row-amount, $row-prefix);
+	}
 }
